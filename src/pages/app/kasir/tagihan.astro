@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import InvoiceDetail from '../../../components/modules/kasir/InvoiceDetail';
+---
+
+<AppLayout title="Detail Tagihan" roles={["KASIR"]} crumbs={[{"label": "Kasir", "href": "/app/kasir"}, {"label": "Tagihan"}]}>
+  <InvoiceDetail client:load />
+</AppLayout>

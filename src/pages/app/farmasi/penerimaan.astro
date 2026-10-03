@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import GoodsReceipt from '../../../components/modules/farmasi/GoodsReceipt';
+---
+
+<AppLayout title="Penerimaan Barang" roles={["APOTEKER"]} crumbs={[{"label": "Farmasi", "href": "/app/farmasi"}, {"label": "Penerimaan"}]}>
+  <GoodsReceipt client:load />
+</AppLayout>

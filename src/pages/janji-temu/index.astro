@@ -1,0 +1,37 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import BookingForm from '../../components/landing/BookingForm';
+import { doctors, polis, schedules } from '../../data/landing';
+import { HOSPITAL } from '../../lib/constants';
+---
+
+<LandingLayout title="Buat Janji Temu" description="Buat janji temu online dengan dokter spesialis Rumah Sakit Dustira Cimahi dalam 3 langkah dan dapatkan kode booking." active="/janji-temu">
+  <section class="border-b border-border bg-surface">
+    <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6">
+      <p class="text-sm font-semibold tracking-wider text-primary uppercase">Janji Temu Online</p>
+      <h1 class="mt-2 text-4xl font-bold">Buat Janji Temu</h1>
+      <p class="mt-3 max-w-2xl text-muted">Pilih poli dan dokter, tentukan jadwal, lalu isi data diri. Kode booking langsung Anda terima.</p>
+    </div>
+  </section>
+  <section class="mx-auto grid max-w-5xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_280px]">
+    <div class="rounded-[20px] border border-border bg-white p-5 shadow-soft sm:p-8">
+      <BookingForm client:load polis={polis.filter((p) => p.id !== 'POL-IGD')} doctors={doctors.filter((d) => d.poliId !== 'POL-IGD')} schedules={schedules} />
+    </div>
+    <aside class="space-y-4 text-sm">
+      <div class="rounded-[var(--radius-card)] bg-primary p-5 text-white">
+        <p class="font-heading font-semibold">Kondisi gawat darurat?</p>
+        <p class="mt-1 text-white">Jangan menunggu jadwal. Segera ke IGD atau hubungi:</p>
+        <a href={`tel:${HOSPITAL.emergencyTel}`} class="tabular mt-3 block font-heading text-xl font-bold underline-offset-2 hover:underline">{HOSPITAL.emergencyPhone}</a>
+      </div>
+      <div class="rounded-[var(--radius-card)] border border-border p-5">
+        <p class="font-heading font-semibold">Sudah punya kode?</p>
+        <p class="mt-1 text-muted">Cek status booking Anda kapan saja.</p>
+        <a href="/janji-temu/sukses" class="btn btn-secondary btn-sm mt-3">Cek kode booking</a>
+      </div>
+      <div class="rounded-[var(--radius-card)] border border-border p-5 text-muted">
+        <p class="font-heading font-semibold text-text">Pasien BPJS</p>
+        <p class="mt-1">Siapkan surat rujukan dari faskes tingkat pertama. SEP akan diterbitkan saat pendaftaran di loket.</p>
+      </div>
+    </aside>
+  </section>
+</LandingLayout>

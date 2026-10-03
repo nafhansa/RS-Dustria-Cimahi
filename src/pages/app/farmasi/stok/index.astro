@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../../layouts/AppLayout.astro';
+import StockList from '../../../../components/modules/farmasi/StockList';
+---
+
+<AppLayout title="Stok Obat" roles={["APOTEKER"]} crumbs={[{"label": "Farmasi", "href": "/app/farmasi"}, {"label": "Stok Obat"}]}>
+  <StockList client:load />
+</AppLayout>

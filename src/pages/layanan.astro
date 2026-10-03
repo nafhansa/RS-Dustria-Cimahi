@@ -1,0 +1,83 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import ServiceIcon from '../components/landing/ServiceIcon';
+import { doctors, services } from '../data/landing';
+---
+
+<LandingLayout title="Layanan & Poliklinik" description="Daftar poliklinik spesialis, IGD 24 jam, laboratorium, dan radiologi di Rumah Sakit Dustira Cimahi." active="/layanan">
+  <section class="border-b border-border bg-surface">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+      <p class="text-sm font-semibold tracking-wider text-primary uppercase">Layanan</p>
+      <h1 class="mt-2 text-4xl font-bold">Layanan & Poliklinik</h1>
+      <p class="mt-3 max-w-2xl text-muted">Pelayanan rawat jalan spesialistik, gawat darurat 24 jam, serta penunjang diagnostik yang terintegrasi dalam satu sistem rekam medis elektronik.</p>
+      <nav class="mt-6 flex flex-wrap gap-2" aria-label="Lompat ke layanan">
+        {services.map((s) => <a href={`#${s.slug}`} class="badge bg-white px-3 py-1.5 text-sm ring-1 ring-border hover:ring-primary">{s.name}</a>)}
+        <a href="#igd" class="badge bg-primary px-3 py-1.5 text-sm text-white">IGD 24 Jam</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        services.map((s) => {
+          const docs = doctors.filter((d) => d.poliId === s.poliId);
+          return (
+            <article id={s.slug} class="scroll-mt-28 rounded-[var(--radius-card)] border border-border bg-white p-6 target:ring-2 target:ring-primary">
+              <div class="flex items-start gap-4">
+                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-soft text-primary">
+                  <ServiceIcon name={s.icon} />
+                </span>
+                <div>
+                  <h2 class="font-heading text-xl font-semibold">{s.name}</h2>
+                  <p class="mt-1 text-muted">{s.desc}</p>
+                </div>
+              </div>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {s.facilities.map((f) => (
+                  <li class="badge bg-surface-2 text-muted">{f}</li>
+                ))}
+              </ul>
+              {docs.length > 0 && (
+                <div class="mt-5 border-t border-border pt-4">
+                  <p class="text-xs font-semibold tracking-wide text-subtle uppercase">Dokter</p>
+                  <ul class="mt-2 space-y-1 text-sm">
+                    {docs.map((d) => (
+                      <li class="flex items-center justify-between gap-2">
+                        <span>{d.name}</span>
+                        <a href={`/janji-temu?dokter=${d.id}`} class="link text-sm">
+                          Buat janji
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {s.poliId && (
+                <div class="mt-5 flex gap-2">
+                  <a href={`/dokter?poli=${s.slug}`} class="btn btn-secondary btn-sm">
+                    Jadwal dokter
+                  </a>
+                  <a href={`/janji-temu?poli=${s.poliId}`} class="btn btn-primary btn-sm">
+                    Buat janji temu
+                  </a>
+                </div>
+              )}
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <article id="igd" class="mt-10 scroll-mt-28 overflow-hidden rounded-[var(--radius-card)] bg-ink text-white">
+      <div class="grid gap-6 p-8 md:grid-cols-[1fr_auto] md:items-center">
+        <div>
+          <p class="badge bg-primary text-white">24 jam · 7 hari</p>
+          <h2 class="mt-3 font-heading text-2xl font-bold">Instalasi Gawat Darurat</h2>
+          <p class="mt-2 max-w-2xl text-white/80">Dokter jaga dan perawat terlatih siaga sepanjang waktu, dilengkapi ruang resusitasi, observasi, dan akses langsung ke laboratorium serta radiologi.</p>
+        </div>
+        <a href="tel:+62226650119" class="btn btn-primary btn-lg">Telepon IGD (022) 665-0119</a>
+      </div>
+    </article>
+  </section>
+</LandingLayout>

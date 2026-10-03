@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import AppointmentsAdmin from '../../../components/modules/pendaftaran/AppointmentsAdmin';
+---
+
+<AppLayout title="Janji Temu Online" roles={["ADMIN"]} crumbs={[{"label": "Janji Temu"}]}>
+  <AppointmentsAdmin client:load />
+</AppLayout>

@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import InvoiceList from '../../../components/modules/kasir/InvoiceList';
+---
+
+<AppLayout title="Kasir" roles={["KASIR"]} crumbs={[{"label": "Kasir"}]}>
+  <InvoiceList client:load />
+</AppLayout>

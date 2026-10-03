@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/landing/Navbar.astro';
+import Footer from '../components/landing/Footer.astro';
+import { HOSPITAL } from '../lib/constants';
+import interUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import jakartaUrl from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  active?: string;
+  transparentNav?: boolean;
+}
+const { title, description, active = '', transparentNav = false } = Astro.props;
+const site = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+const fullTitle = title === HOSPITAL.name ? `${HOSPITAL.name} Cimahi · Pelayanan yang Bisa Anda Percaya` : `${title} · ${HOSPITAL.name} Cimahi`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Hospital',
+  name: `${HOSPITAL.name} Cimahi`,
+  url: site,
+  logo: `${site}/logo-symbol.png`,
+  image: `${site}/og-image.png`,
+  telephone: HOSPITAL.phone,
+  email: HOSPITAL.email,
+  address: { '@type': 'PostalAddress', streetAddress: 'Jl. Dr. Dustira No. 1, Baros', addressLocality: 'Cimahi', addressRegion: 'Jawa Barat', postalCode: '40521', addressCountry: 'ID' },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '07:00', closes: '20:00' },
+    { '@type': 'OpeningHoursSpecification', name: 'IGD', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], opens: '00:00', closes: '23:59' },
+  ],
+  medicalSpecialty: ['InternalMedicine', 'Pediatric', 'Obstetric', 'Surgical', 'Cardiovascular', 'Neurologic', 'Dentistry', 'Optometric', 'Otolaryngologic', 'PhysicalTherapy', 'Emergency'],
+};
+---
+
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="preload" href={interUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={jakartaUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="Rumah Sakit Dustira Cimahi" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${site}/og-image.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <style is:global>
+      /* smooth cross-document navigation (Chromium); header stays in place while content cross-fades */
+      @view-transition {
+        navigation: auto;
+      }
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation-duration: 0.18s;
+      }
+      #site-nav {
+        view-transition-name: site-nav;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        @view-transition {
+          navigation: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-white text-text">
+    <a href="#konten" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-white focus:px-3 focus:py-2 focus:shadow-lift">Lewati ke konten</a>
+    <Navbar active={active} transparent={transparentNav} />
+    <main id="konten">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

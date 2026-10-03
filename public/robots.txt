@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /app/
+Disallow: /seed.json
+
+Sitemap: https://rsdustira-demo.vercel.app/sitemap-index.xml

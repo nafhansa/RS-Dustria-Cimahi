@@ -1,0 +1,12 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import UIGuide from '../../components/modules/UIGuide';
+
+export function getStaticPaths() {
+  return [{ params: { ui: '_ui' } }];
+}
+---
+
+<AppLayout title="UI Style Guide" roles={['SUPERADMIN']} crumbs={[{ label: 'UI Style Guide' }]}>
+  <UIGuide client:load />
+</AppLayout>

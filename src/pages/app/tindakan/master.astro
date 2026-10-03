@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import ProcedureMasterPage from '../../../components/modules/tindakan/ProcedureMasterPage';
+---
+
+<AppLayout title="Master Tindakan" roles={["SUPERADMIN"]} crumbs={[{"label": "Tindakan", "href": "/app/tindakan"}, {"label": "Master Tarif"}]}>
+  <ProcedureMasterPage client:load />
+</AppLayout>

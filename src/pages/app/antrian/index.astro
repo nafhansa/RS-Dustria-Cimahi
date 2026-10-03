@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import QueueBoard from '../../../components/modules/antrian/QueueBoard';
+---
+
+<AppLayout title="Antrian" roles={["ADMIN", "PERAWAT", "DOKTER"]} crumbs={[{"label": "Antrian"}]}>
+  <QueueBoard client:load />
+</AppLayout>

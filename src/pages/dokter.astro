@@ -1,0 +1,18 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import DoctorDirectory from '../components/landing/DoctorDirectory';
+import { doctors, polis, schedules } from '../data/landing';
+---
+
+<LandingLayout title="Jadwal & Profil Dokter" description="Cari dokter spesialis Rumah Sakit Dustira Cimahi berdasarkan poli dan hari praktik, lalu buat janji temu online." active="/dokter">
+  <section class="border-b border-border bg-surface">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+      <p class="text-sm font-semibold tracking-wider text-primary uppercase">Dokter</p>
+      <h1 class="mt-2 text-4xl font-bold">Jadwal & Profil Dokter</h1>
+      <p class="mt-3 max-w-2xl text-muted">Temukan dokter yang tepat dan lihat jadwal praktiknya. Jadwal dapat berubah sewaktu-waktu; konfirmasi akan dikirim setelah booking.</p>
+    </div>
+  </section>
+  <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+    <DoctorDirectory client:load doctors={doctors} polis={polis} schedules={schedules} />
+  </section>
+</LandingLayout>

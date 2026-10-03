@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Worklist from '../../../components/modules/rekam-medis/Worklist';
+---
+
+<AppLayout title="Rekam Medis" roles={["DOKTER", "PERAWAT"]} crumbs={[{"label": "Rekam Medis"}]}>
+  <Worklist client:load />
+</AppLayout>

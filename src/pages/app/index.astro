@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Dashboard from '../../components/modules/dashboard/Dashboard';
+---
+
+<AppLayout title="Dashboard" roles={[]} crumbs={[{"label": "Dashboard"}]}>
+  <Dashboard client:load />
+</AppLayout>

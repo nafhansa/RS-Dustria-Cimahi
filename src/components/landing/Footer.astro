@@ -1,0 +1,63 @@
+---
+import { HOSPITAL } from '../../lib/constants';
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-surface">
+  <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <img src="/logo.webp" alt="Rumah Sakit Dustira" width="180" height="45" loading="lazy" class="h-10 w-auto" />
+      <p class="mt-4 text-sm leading-relaxed text-muted">Melayani masyarakat Cimahi dan sekitarnya dengan tenaga medis profesional, fasilitas modern, dan sepenuh hati.</p>
+      <div class="mt-5 flex gap-2">
+        {
+          [
+            ['Instagram', 'M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6-1.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z', 'https://www.instagram.com/'],
+            ['Facebook', 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z', 'https://www.facebook.com/'],
+            ['YouTube', 'M22.5 6.4a2.8 2.8 0 0 0-2-2C18.8 4 12 4 12 4s-6.8 0-8.5.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 5.6 2.8 2.8 0 0 0 2 2c1.7.4 8.5.4 8.5.4s6.8 0 8.5-.4a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-5.6zM10 15.5v-7l6 3.5z', 'https://www.youtube.com/'],
+          ].map(([label, d, href]) => (
+            <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} class="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-white text-muted transition hover:border-primary hover:text-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={d} /></svg>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold text-text">Kontak</h2>
+      <ul class="mt-4 space-y-2.5 text-sm text-muted">
+        <li>{HOSPITAL.address}</li>
+        <li><a href={`tel:${HOSPITAL.phoneTel}`} class="hover:text-primary">Telp. {HOSPITAL.phone}</a></li>
+        <li><a href={`tel:${HOSPITAL.emergencyTel}`} class="font-semibold text-primary">IGD 24 Jam {HOSPITAL.emergencyPhone}</a></li>
+        <li><a href={`mailto:${HOSPITAL.email}`} class="hover:text-primary">{HOSPITAL.email}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold text-text">Jam Operasional</h2>
+      <ul class="mt-4 space-y-2.5 text-sm text-muted">
+        <li class="flex justify-between gap-4"><span>Poliklinik</span><span class="tabular">Sen - Sab, 07.00 - 20.00</span></li>
+        <li class="flex justify-between gap-4"><span>IGD</span><span class="font-medium text-text">24 jam</span></li>
+        <li class="flex justify-between gap-4"><span>Farmasi</span><span class="font-medium text-text">24 jam</span></li>
+        <li class="flex justify-between gap-4"><span>Laboratorium</span><span class="tabular">06.00 - 22.00</span></li>
+        <li class="flex justify-between gap-4"><span>Jam besuk</span><span class="tabular">11.00 - 13.00, 17.00 - 19.00</span></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="text-sm font-semibold text-text">Tautan Cepat</h2>
+      <ul class="mt-4 grid grid-cols-2 gap-2.5 text-sm text-muted lg:grid-cols-1">
+        <li><a href="/janji-temu" class="hover:text-primary">Buat Janji Temu</a></li>
+        <li><a href="/dokter" class="hover:text-primary">Jadwal Dokter</a></li>
+        <li><a href="/layanan" class="hover:text-primary">Layanan & Poliklinik</a></li>
+        <li><a href="/janji-temu/sukses" class="hover:text-primary">Cek Kode Booking</a></li>
+        <li><a href="/tentang" class="hover:text-primary">Tentang Kami</a></li>
+        <li><a href="/kontak" class="hover:text-primary">Kontak & Lokasi</a></li>
+        <li><a href="/app/login" class="hover:text-primary">Masuk Staf</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-border">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs text-subtle sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <p>© {year} Rumah Sakit Dustira Cimahi. Hak cipta dilindungi.</p>
+      <p>Situs demo: seluruh data jadwal, dokter, dan testimoni adalah contoh fiktif.</p>
+    </div>
+  </div>
+</footer>

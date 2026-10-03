@@ -1,0 +1,11 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import BookingStatus from '../../components/landing/BookingStatus';
+import { doctors, polis } from '../../data/landing';
+---
+
+<LandingLayout title="Konfirmasi Booking" description="Konfirmasi dan status kode booking janji temu Rumah Sakit Dustira Cimahi.">
+  <section class="bg-surface px-4 py-14 sm:px-6">
+    <BookingStatus client:load polis={polis} doctors={doctors} />
+  </section>
+</LandingLayout>

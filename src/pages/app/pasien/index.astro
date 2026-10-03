@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import PatientList from '../../../components/modules/pasien/PatientList';
+---
+
+<AppLayout title="Data Pasien" roles={["ADMIN", "DOKTER", "PERAWAT"]} crumbs={[{"label": "Data Pasien"}]}>
+  <PatientList client:load />
+</AppLayout>

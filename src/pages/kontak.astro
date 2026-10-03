@@ -1,0 +1,133 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import { HOSPITAL } from '../lib/constants';
+---
+
+<LandingLayout title="Kontak & Lokasi" description="Alamat, nomor telepon, IGD 24 jam, dan formulir kontak Rumah Sakit Dustira Cimahi." active="/kontak">
+  <section class="border-b border-border bg-surface">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+      <p class="text-sm font-semibold tracking-wider text-primary uppercase">Kontak</p>
+      <h1 class="mt-2 text-4xl font-bold">Kontak & Lokasi</h1>
+      <p class="mt-3 max-w-2xl text-muted">Kami siap membantu. Untuk kondisi gawat darurat, langsung datang ke IGD atau hubungi nomor IGD 24 jam.</p>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_1.1fr]">
+    <div class="space-y-4">
+      <a href={`tel:${HOSPITAL.emergencyTel}`} class="flex items-center gap-4 rounded-[var(--radius-card)] bg-primary p-6 text-white transition hover:bg-primary-hover">
+        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </span>
+        <span>
+          <span class="block text-xs font-semibold tracking-wider uppercase opacity-90">IGD 24 Jam</span>
+          <span class="tabular block font-heading text-2xl font-bold">{HOSPITAL.emergencyPhone}</span>
+        </span>
+      </a>
+      <dl class="grid gap-4 sm:grid-cols-2">
+        {
+          [
+            ['Alamat', HOSPITAL.address],
+            ['Telepon informasi', HOSPITAL.phone],
+            ['Email', HOSPITAL.email],
+            ['Jam poliklinik', 'Senin - Sabtu, 07.00 - 20.00 WIB'],
+          ].map(([k, v]) => (
+            <div class="rounded-[var(--radius-card)] border border-border p-5">
+              <dt class="text-xs font-semibold tracking-wide text-subtle uppercase">{k}</dt>
+              <dd class="mt-1 font-medium">{v}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <figure class="overflow-hidden rounded-[var(--radius-card)] border border-border">
+        <svg viewBox="0 0 600 300" class="h-auto w-full bg-[#f4f6f8]" role="img" aria-label="Peta ilustrasi lokasi Rumah Sakit Dustira di Baros, Cimahi Tengah">
+          <rect width="600" height="300" fill="#eef1f4" />
+          <path d="M0 210 C 120 190, 200 240, 320 200 S 520 150, 600 170" stroke="#fff" stroke-width="26" fill="none" />
+          <path d="M0 210 C 120 190, 200 240, 320 200 S 520 150, 600 170" stroke="#d6dbe1" stroke-width="2" fill="none" stroke-dasharray="10 10" />
+          <path d="M280 0 L 300 300" stroke="#fff" stroke-width="20" />
+          <path d="M90 0 L 140 300" stroke="#fff" stroke-width="12" />
+          <path d="M460 0 L 430 300" stroke="#fff" stroke-width="12" />
+          <rect x="320" y="70" width="110" height="80" rx="8" fill="#dfe6dc" />
+          <rect x="150" y="40" width="100" height="60" rx="8" fill="#e5e1d8" />
+          <rect x="40" y="230" width="90" height="50" rx="8" fill="#dfe6dc" />
+          <text x="310" y="196" font-size="12" fill="#667085" font-family="Inter Variable, sans-serif">Jl. Gatot Subroto</text>
+          <text x="305" y="30" font-size="12" fill="#667085" font-family="Inter Variable, sans-serif" transform="rotate(86 305 30)">Jl. Dr. Dustira</text>
+          <g transform="translate(300 120)">
+            <circle r="34" fill="#d01b28" opacity="0.15" />
+            <path d="M0 22 C -16 4, -20 -6, -20 -14 A 20 20 0 0 1 20 -14 C 20 -6, 16 4, 0 22 Z" fill="#d01b28" />
+            <path d="M-3 -21h6v5h5v6h-5v5h-6v-5h-5v-6h5z" fill="#fff" />
+          </g>
+          <rect x="330" y="104" width="170" height="34" rx="8" fill="#fff" />
+          <text x="342" y="126" font-size="14" font-weight="700" fill="#101828" font-family="Plus Jakarta Sans Variable, sans-serif">RS Dustira Cimahi</text>
+        </svg>
+        <figcaption class="flex flex-wrap items-center justify-between gap-2 border-t border-border p-4 text-sm">
+          <span class="text-muted">Ilustrasi peta. Gunakan aplikasi navigasi untuk rute.</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=Rumah+Sakit+Dustira+Cimahi" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Buka di Google Maps</a>
+        </figcaption>
+      </figure>
+    </div>
+
+    <form id="contact-form" class="rounded-[20px] border border-border bg-white p-6 shadow-soft sm:p-8" novalidate>
+      <h2 class="font-heading text-2xl font-bold">Kirim pesan</h2>
+      <p class="mt-1 text-sm text-muted">Pertanyaan umum, saran, atau kerja sama. Kami membalas pada hari kerja.</p>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <label class="sm:col-span-2">
+          <span class="field-label">Nama <span class="text-primary">*</span></span>
+          <input name="name" class="input" required minlength="3" autocomplete="name" />
+        </label>
+        <label>
+          <span class="field-label">Email <span class="text-primary">*</span></span>
+          <input name="email" type="email" class="input" required autocomplete="email" />
+        </label>
+        <label>
+          <span class="field-label">No HP</span>
+          <input name="phone" class="input" inputmode="tel" autocomplete="tel" />
+        </label>
+        <label class="sm:col-span-2">
+          <span class="field-label">Topik</span>
+          <select name="topic" class="input">
+            <option>Informasi layanan</option>
+            <option>Saran & masukan</option>
+            <option>Pengaduan</option>
+            <option>Kerja sama</option>
+          </select>
+        </label>
+        <label class="sm:col-span-2">
+          <span class="field-label">Pesan <span class="text-primary">*</span></span>
+          <textarea name="message" class="input min-h-[140px]" required minlength="10"></textarea>
+        </label>
+      </div>
+      <p id="contact-error" class="field-error hidden" role="alert"></p>
+      <button type="submit" class="btn btn-primary btn-lg mt-6 w-full sm:w-auto">Kirim Pesan</button>
+    </form>
+  </section>
+
+  <div id="toast" class="pointer-events-none fixed right-4 bottom-4 z-50 flex max-w-sm translate-y-4 items-start gap-3 rounded-[var(--radius-card)] border border-border bg-white p-4 opacity-0 shadow-lift transition-all duration-300" role="status" aria-live="polite">
+    <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-success-soft text-success-strong">✓</span>
+    <div>
+      <p class="font-semibold">Pesan terkirim</p>
+      <p class="text-sm text-muted">Terima kasih, tim kami akan menghubungi Anda segera (demo).</p>
+    </div>
+  </div>
+</LandingLayout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const err = document.getElementById('contact-error')!;
+  const toast = document.getElementById('toast')!;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const invalid = [...form.elements].find((el) => (el as HTMLInputElement).willValidate && !(el as HTMLInputElement).checkValidity()) as HTMLInputElement | undefined;
+    if (invalid) {
+      err.textContent = 'Lengkapi nama, email yang valid, dan pesan minimal 10 karakter.';
+      err.classList.remove('hidden');
+      invalid.setAttribute('aria-invalid', 'true');
+      invalid.focus();
+      return;
+    }
+    err.classList.add('hidden');
+    form.reset();
+    toast.classList.remove('opacity-0', 'translate-y-4');
+    setTimeout(() => toast.classList.add('opacity-0', 'translate-y-4'), 4000);
+  });
+  form.addEventListener('input', (e) => (e.target as HTMLElement).removeAttribute('aria-invalid'));
+</script>

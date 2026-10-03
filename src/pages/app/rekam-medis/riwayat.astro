@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import MRHistory from '../../../components/modules/rekam-medis/MRHistory';
+---
+
+<AppLayout title="Riwayat Rekam Medis" roles={["DOKTER", "PERAWAT"]} crumbs={[{"label": "Rekam Medis", "href": "/app/rekam-medis"}, {"label": "Riwayat"}]}>
+  <MRHistory client:load />
+</AppLayout>

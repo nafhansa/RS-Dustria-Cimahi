@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import ExamForm from '../../../components/modules/rekam-medis/ExamForm';
+---
+
+<AppLayout title="Pemeriksaan" roles={["DOKTER", "PERAWAT"]} crumbs={[{"label": "Rekam Medis", "href": "/app/rekam-medis"}, {"label": "Pemeriksaan"}]}>
+  <ExamForm client:load />
+</AppLayout>

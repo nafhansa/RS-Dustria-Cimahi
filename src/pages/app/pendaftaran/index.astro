@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import RegistrationList from '../../../components/modules/pendaftaran/RegistrationList';
+---
+
+<AppLayout title="Pendaftaran" roles={["ADMIN"]} crumbs={[{"label": "Pendaftaran"}]}>
+  <RegistrationList client:load />
+</AppLayout>

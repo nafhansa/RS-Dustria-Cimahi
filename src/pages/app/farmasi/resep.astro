@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import RxDetail from '../../../components/modules/farmasi/RxDetail';
+---
+
+<AppLayout title="Detail Resep" roles={["APOTEKER"]} crumbs={[{"label": "Farmasi", "href": "/app/farmasi"}, {"label": "Resep"}]}>
+  <RxDetail client:load />
+</AppLayout>

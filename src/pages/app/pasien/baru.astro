@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import PatientForm from '../../../components/modules/pasien/PatientForm';
+---
+
+<AppLayout title="Pasien Baru" roles={["ADMIN"]} crumbs={[{"label": "Data Pasien", "href": "/app/pasien"}, {"label": "Pasien Baru"}]}>
+  <PatientForm client:load mode="new" />
+</AppLayout>

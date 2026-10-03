@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../../layouts/AppLayout.astro';
+import StockCard from '../../../../components/modules/farmasi/StockCard';
+---
+
+<AppLayout title="Kartu Stok" roles={["APOTEKER"]} crumbs={[{"label": "Farmasi", "href": "/app/farmasi"}, {"label": "Stok Obat", "href": "/app/farmasi/stok"}, {"label": "Kartu Stok"}]}>
+  <StockCard client:load />
+</AppLayout>

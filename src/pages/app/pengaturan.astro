@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import Settings from '../../components/modules/master/Settings';
+---
+
+<AppLayout title="Pengaturan" roles={["SUPERADMIN"]} crumbs={[{"label": "Pengaturan"}]}>
+  <Settings client:load />
+</AppLayout>

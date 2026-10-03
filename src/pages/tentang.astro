@@ -1,0 +1,90 @@
+---
+import LandingLayout from '../layouts/LandingLayout.astro';
+import { stats } from '../data/landing';
+const values = [
+  ['Amanah', 'Menjaga kepercayaan pasien dengan pelayanan jujur dan bertanggung jawab.'],
+  ['Profesional', 'Bekerja sesuai standar keilmuan, etika, dan keselamatan pasien.'],
+  ['Peduli', 'Mendengar, menjelaskan, dan memperlakukan setiap pasien dengan hormat.'],
+  ['Inovatif', 'Terus memperbaiki layanan melalui teknologi dan pembelajaran.'],
+];
+const milestones = [
+  ['Pelayanan IGD 24 jam', 'Tim gawat darurat siaga dengan alur triase terstandar.'],
+  ['Rekam medis elektronik', 'Seluruh poliklinik menggunakan RME terintegrasi dengan farmasi dan kasir.'],
+  ['Pendaftaran online', 'Booking janji temu tanpa antre panjang di loket.'],
+  ['Keselamatan pasien', 'Program identifikasi pasien, pencegahan infeksi, dan pelaporan insiden.'],
+];
+---
+
+<LandingLayout title="Tentang Kami" description="Profil, visi misi, nilai, dan komitmen mutu Rumah Sakit Dustira Cimahi." active="/tentang">
+  <section class="border-b border-border bg-surface">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+      <p class="text-sm font-semibold tracking-wider text-primary uppercase">Tentang Kami</p>
+      <h1 class="mt-2 max-w-3xl text-4xl font-bold">Melayani masyarakat Cimahi dengan sepenuh hati</h1>
+      <p class="mt-4 max-w-2xl text-muted">Rumah Sakit Dustira adalah rumah sakit umum di Kota Cimahi yang melayani pasien umum, peserta BPJS Kesehatan, dan asuransi. Kami menggabungkan tenaga medis berpengalaman dengan sistem pelayanan yang modern dan terintegrasi.</p>
+    </div>
+  </section>
+  <section class="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 lg:grid-cols-2">
+    <div class="rounded-[var(--radius-card)] border border-border p-8">
+      <h2 class="font-heading text-2xl font-bold">Visi</h2>
+      <p class="mt-3 text-lg text-muted">Menjadi rumah sakit pilihan masyarakat yang terpercaya, bermutu, dan berorientasi pada keselamatan pasien.</p>
+    </div>
+    <div class="rounded-[var(--radius-card)] border border-border p-8">
+      <h2 class="font-heading text-2xl font-bold">Misi</h2>
+      <ol class="mt-3 list-decimal space-y-2 pl-5 text-muted">
+        <li>Memberikan pelayanan kesehatan paripurna yang aman dan berkualitas.</li>
+        <li>Mengembangkan sumber daya manusia yang profesional dan berempati.</li>
+        <li>Menerapkan teknologi informasi untuk pelayanan yang cepat dan transparan.</li>
+        <li>Menjalin kemitraan dengan fasilitas kesehatan dan penjamin.</li>
+      </ol>
+    </div>
+  </section>
+  <section class="bg-surface py-14">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <h2 class="font-heading text-2xl font-bold">Nilai kami</h2>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {values.map(([t, d]) => (
+          <li class="rounded-[var(--radius-card)] border border-border bg-white p-6">
+            <p class="font-heading text-lg font-semibold text-primary">{t}</p>
+            <p class="mt-1 text-sm text-muted">{d}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+    <div class="grid gap-10 lg:grid-cols-2">
+      <div>
+        <h2 class="font-heading text-2xl font-bold">Akreditasi & komitmen mutu</h2>
+        <p class="mt-3 text-muted">Kami menjalankan standar akreditasi rumah sakit nasional, termasuk sasaran keselamatan pasien, pencegahan dan pengendalian infeksi, serta manajemen rekam medis.</p>
+        <div class="mt-6 flex items-center gap-4 rounded-[var(--radius-card)] border border-border p-5">
+          <span class="flex h-14 w-14 items-center justify-center rounded-full bg-primary-soft text-primary">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="7"></circle><path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"></path></svg>
+          </span>
+          <div>
+            <p class="font-semibold">Rumah sakit terakreditasi</p>
+            <p class="text-sm text-muted">Sertifikat ditampilkan pada versi produksi sesuai dokumen resmi.</p>
+          </div>
+        </div>
+      </div>
+      <ul class="space-y-4">
+        {milestones.map(([t, d]) => (
+          <li class="flex gap-4">
+            <span class="mt-1 h-3 w-3 shrink-0 rounded-full bg-primary"></span>
+            <div>
+              <p class="font-semibold">{t}</p>
+              <p class="text-sm text-muted">{d}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <dl class="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
+      {stats.map((s) => (
+        <div class="flex flex-col rounded-[var(--radius-card)] bg-surface p-6 text-center">
+          <dt class="order-2 text-sm text-muted">{s.label}</dt>
+          <dd class="tabular font-heading text-3xl font-extrabold">{s.value}<span class="text-primary">{s.suffix}</span></dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+</LandingLayout>

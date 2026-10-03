@@ -1,0 +1,8 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import ProcedureLog from '../../../components/modules/tindakan/ProcedureLog';
+---
+
+<AppLayout title="Tindakan" roles={["DOKTER", "PERAWAT"]} crumbs={[{"label": "Tindakan"}]}>
+  <ProcedureLog client:load />
+</AppLayout>
